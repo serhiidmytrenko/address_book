@@ -1,5 +1,5 @@
 # coding: utf-8
-
+import pickle
 
 address_book = {}  # This is my Address Book
 
@@ -19,6 +19,8 @@ def create_contact(address_book, name, phone):
     if not phone or not phone.isdigit():
         raise ValueError("It's not phone, try one more")
     address_book[name.capitalize()] = phone
+
+
 
 
 def read_contact():
@@ -53,6 +55,10 @@ while True:
             print('Try again')
             continue
         print address_book
+        contacts = open("contacts_file.txt", 'a')
+        pickle.dump(address_book, contacts)
+        contacts.close()
+
 
     elif action == '2':
         find_contact = raw_input('Enter the name of contact')
